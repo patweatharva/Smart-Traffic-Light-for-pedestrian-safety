@@ -51,58 +51,58 @@ Before proceeding, it's worthwhile to test that [jetson-inference](https://githu
 
 Follow [this_page](https://pypi.org/project/Jetson.GPIO/#:~:text=In%20order%20to%20use%20the,to%20the%20newly%20created%20group.&text=Install%20custom%20udev%20rules%20by%20copying%20the%2099%2Dgpio.) for manual installation or run following command
 
-`
+```
 sudo pip install Jetson.GPIO
 
-`
+```
 
 Openup python shell to check correct installation by running following command
 
-`
+```
 import Jetson.GPIO as GPIO
 
-`
+```
 
 ### numpy
 
-run 
+Run following command
 
-`
+```
 pip install --user numpy
 
-`
+```
 
 ### jetson-utils
 
-run 
+Run following command
 
-`
+```
 pip install --user jetson-utils
 
-`
+```
 
 Openup python shell to check correct installation by running following command
 
-`
+```
 import jetson-utils
 
-`
+```
 
 ### OpenCV
 
-run
+Run following command
 
-`
+```
 pip install --user opencv-python
 
-`
+```
 
 Openup python shell to check correct installation by running following command
 
-`
+```
 import cv2
 
-`
+```
 
 ## Setting up regions
 
@@ -110,14 +110,56 @@ After setting up cameras on desired locations from where clear view of lane is v
 
 ### For saving a frame from live feed or video 
 
-run [capture_frame_from_video.py](https://github.com/patweatharva/Smart-Traffic-Light-for-pedestrian-safety/blob/main/capture_frame_from_video.py) after giving path to the video file or giving usb address of the camera connected.
+Run [capture_frame_from_video.py](https://github.com/patweatharva/Smart-Traffic-Light-for-pedestrian-safety/blob/main/capture_frame_from_video.py) after giving path to the video file or giving usb address of the camera connected.
 
 press 'x' to capture a frame
 
-The frame is then stored into current working directory.
+The frame is then stored into the current working directory.
 
 ### For getting region coordinates
 
+Run following python script to get the co-ordinates of the regions
 
+[region_coordinates.py](https://github.com/patweatharva/Smart-Traffic-Light-for-pedestrian-safety/blob/main/region_coordinates.py)
+
+Click on the window to get the coordinates of the region not down them and move onto the next step
+
+### Putting coordinates in code
+
+In [main.py](https://github.com/patweatharva/Smart-Traffic-Light-for-pedestrian-safety/blob/main/main.py) in the specified pts put the respective coordinates
+
+![schematic](region_coordinates.jpg)
+
+
+## Running the script
+
+Connect following hardware to the jetson nano
+
+1. One or two cameras
+2. Relay modules connected to respective pins as mentioned in the script
+3. Lamps connected to the relay module
+4. 5V 3A power supply to jetson nano
+
+
+There you have it 
+
+You have successfully implemented the program 
+
+You can autorun the script in jetson nano using following steps
+
+1. Openup Terminal
+2. Run
+
+```
+crontab -e
+
+```
+3. At the end, put following command
+
+```
+@reboot python3 path/to/script
+
+```
+at the place of python3 put path to your python3 interpreter
 
 

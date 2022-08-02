@@ -16,9 +16,10 @@ ClassID: 1
 
 """
 
-# importing required libraries
+# Importing required libraries
 
-# cleaning GPIO
+
+# Cleaning GPIO
 import Jetson.GPIO as GPIO
 import cv2
 from termios import TABDLY
@@ -29,14 +30,12 @@ import numpy as np
 from datetime import datetime
 import time
 from pip import main
-
-
 GPIO.cleanup()
 
 # Getting pretrained SSD-Mobilenet-v2 model
 net = jetson.inference.detectNet("SSD-Mobilenet-v2", threshold=0.5)
 
-# initializing the capture instance for inference
+# Initializing the capture instance for inference
 cap = cv2.VideoCapture(0)
 cap2 = cv2.VideoCapture(1)
 resw, resh = 640, 480
@@ -50,14 +49,16 @@ print("capdata:", cap)
 
 # Defining boxes Lane1 of the road
 waiting_area = np.array(
-    [[10, 240], [160, 250], [160, 480], [10, 480]], np.int32)
+    "Eneter co-ordinates obtained for the area like [[10, 240], [160, 250], [160, 480], [10, 480]]", np.int32)
 pts = waiting_area.reshape((-1, 1, 2))
 main_area = np.array(
-    [[230, 240], [400, 240], [400, 480], [230, 480]], np.int32)
+    "Eneter co-ordinates obtained for the area like [[10, 240], [160, 250], [160, 480], [10, 480]]", np.int32)
 pts_2 = main_area.reshape((-1, 1, 2))
 waiting_area_2 = np.array(
-    [[450, 240], [640, 240], [640, 480], [450, 480]], np.int32)
+    "Eneter co-ordinates obtained for the area like [[10, 240], [160, 250], [160, 480], [10, 480]]", np.int32)
 pts_3 = waiting_area_2.reshape((-1, 1, 2))
+
+
 isClosed = True
 waiting_1 = False
 main_1 = False
@@ -80,16 +81,17 @@ led_pin_5 = 14  # vehicle green
 frame_delay_1 = 15
 frame_delay_2 = 15
 
-# Defining boxes lane 2 c block side
+# Defining boxes lane 2
 waiting_area_lane2 = np.array(
-    [[10, 240], [160, 250], [160, 480], [10, 480]], np.int32)
+    "Eneter co-ordinates obtained for the area like [[10, 240], [160, 250], [160, 480], [10, 480]]", np.int32)
 pts_lane2 = waiting_area_lane2.reshape((-1, 1, 2))
 main_area_lane2 = np.array(
-    [[230, 240], [400, 240], [400, 480], [230, 480]], np.int32)
+    "Eneter co-ordinates obtained for the area like [[10, 240], [160, 250], [160, 480], [10, 480]]", np.int32)
 pts_2_lane2 = main_area_lane2.reshape((-1, 1, 2))
 waiting_area_2_lane2 = np.array(
-    [[450, 240], [640, 240], [640, 480], [450, 480]], np.int32)
+    "Eneter co-ordinates obtained for the area like [[10, 240], [160, 250], [160, 480], [10, 480]]", np.int32)
 pts_3_lane2 = waiting_area_2_lane2.reshape((-1, 1, 2))
+
 isClosed_lane2 = True
 waiting_1_lane2 = False
 main_1_lane2 = False
@@ -106,8 +108,8 @@ pause_3_lane2 = 0
 counter_delay_lane2 = 0
 cx_lane2 = []
 cy_lane2 = []
-led_pin_3 = 15  # pedestrian lane2
-led_pin_4 = 35  # vehicle red lane2
+led_pin_3 = 15  # pedestrian lane 2
+led_pin_4 = 35  # vehicle red lane 2
 led_pin_6 = 16  # vehicle green lane 2
 frame_delay_1_lane2 = 15
 frame_delay_2_lane2 = 15
@@ -120,7 +122,6 @@ GPIO.setup(led_pin_3, GPIO.OUT, initial=GPIO.LOW)
 GPIO.setup(led_pin_4, GPIO.OUT, initial=GPIO.LOW)
 GPIO.setup(led_pin_5, GPIO.OUT, initial=GPIO.LOW)
 GPIO.setup(led_pin_6, GPIO.OUT, initial=GPIO.LOW)
-
 
 # detection for frame1
 def person_detector1(frame1):
@@ -141,6 +142,7 @@ def person_detector1(frame1):
         cx, cy = int(d.Center[0]), int(d.Center[1])
         className = net.GetClassDesc(d.ClassID)
         if classID == 1:  # Filtering out the detection
+
             # Using polygontest for detection on zebra crossing
             result_1_1 = cv2.pointPolygonTest(pts, (x2, y2), False)
             result_1_2 = cv2.pointPolygonTest(pts, (x1, y1+bh), False)
@@ -151,7 +153,7 @@ def person_detector1(frame1):
             result_3_1 = cv2.pointPolygonTest(pts_3, (x2, y2), False)
             result_3_2 = cv2.pointPolygonTest(pts_3, (x1, y1+bh), False)
 
-            if result_1_1 >= 0 or result_1_2 >= 0:
+            if result_1_1 >= 0 or result_1_2 >= 0:  # Checking if person is in specified area
                 cv2.rectangle(image, (x1, y1), (x2, y2), (255, 0, 255), 1)
                 cv2.putText(image, className, (x1+5, y1+15),
                             cv2.FONT_HERSHEY_DUPLEX, 1, (255, 0, 255), 1)
@@ -179,11 +181,12 @@ def person_detector1(frame1):
                 cv2.circle(frame1, (x2, y2), 2, (75, 13, 180), -1)
                 cv2.circle(frame1, (x1, y1+bh), 2, (75, 13, 180), -1)
                 waiting_2 = True
-    # Detection conditions waiitng_Area
 
+
+# Detection conditions waiitng_Area 1
     if waiting_1 == False:
         count_f_1 = count_f_1 + 1
-        if (count_f_1 == frame_delay_1):
+        if (count_f_1 == frame_delay_1):  # To account for fluctuation in the detections
             pause_1 = 0
         print("False count1", count_f_1)
         if(count_t_1 > 5):
@@ -211,7 +214,8 @@ def person_detector1(frame1):
         print("True count2", count_t_1)
         waiting_2 = False
         count_f_3 = 0
-    # Detection conditions main_Area
+
+# Detection conditions main_Area
     if main_1 == False:
         count_f_2 = count_f_2 + 1
         if (count_f_2 == frame_delay_2):
@@ -228,9 +232,9 @@ def person_detector1(frame1):
         main_1 = False
         count_f_2 = 0
 
-    # Detecting conditions
-
     return frame1
+
+# Seperate function for lane 2 is provide for customization
 
 # detection in lane 2 frame
 
@@ -252,8 +256,9 @@ def person_detector2(frame2):
         bw, bh = int(d.Width), int(d.Height)
         cx_lane2, cy_lane2 = int(d.Center[0]), int(d.Center[1])
         className = net.GetClassDesc(d.ClassID)
-        if classID == 1:
-            result_1_1_lane2 = cv2.pointPolygonTest(pts_lane2, (x2, y2), False)
+        if classID == 1:  # If detection is of person class
+            result_1_1_lane2 = cv2.pointPolygonTest(
+                pts_lane2, (x2, y2), False)  # If person is in specified region
             result_1_2_lane2 = cv2.pointPolygonTest(
                 pts_lane2, (x1, y1+bh), False)
 
@@ -267,7 +272,7 @@ def person_detector2(frame2):
             result_3_2_lane2 = cv2.pointPolygonTest(
                 pts_3_lane2, (x1, y1+bh), False)
 
-            if result_1_1_lane2 >= 0 or result_1_2_lane2 >= 0:
+            if result_1_1_lane2 >= 0 or result_1_2_lane2 >= 0:  # Checking if Person is in specified area
                 cv2.rectangle(image2, (x1, y1), (x2, y2), (255, 0, 255), 1)
                 cv2.putText(image2, className, (x1+5, y1+15),
                             cv2.FONT_HERSHEY_DUPLEX, 1, (255, 0, 255), 1)
@@ -351,10 +356,10 @@ def person_detector2(frame2):
 
 while cap.isOpened() or cap2.isOpened():
 
-    # try:
     ret1, frame1 = cap.read()
     ret2, frame2 = cap2.read()
 
+    # converting numpy array to cuda array
     framex = jetson.utils.cudaFromNumpy(frame1)
     framex2 = jetson.utils.cudaFromNumpy(frame2)
 
@@ -386,8 +391,8 @@ while cap.isOpened() or cap2.isOpened():
     cv2.putText(frame2, 'waiting area2_2', (550, 200),
                 cv2.FONT_HERSHEY_DUPLEX, 1, (0, 255, 0), 2)
 
-   #############
-    # waiting output lane 2
+
+# waiting output lane 2
     if ret1:
         if ((pause_1_lane2 == 1) & (pause_2_lane2 == 0) & (pause_3_lane2 == 0)):
             # if (count_t_1 > 2):
@@ -396,16 +401,10 @@ while cap.isOpened() or cap2.isOpened():
                 GPIO.output(led_pin_4, GPIO.LOW)
                 GPIO.output(led_pin_6, GPIO.LOW)
 
-                cv2.putText(frame2, 'WL2-NO', (10, 100),
-                            cv2.FONT_HERSHEY_DUPLEX, 1, (0, 255, 0), 2)
-
             if count_t_1_lane2 == 10:
                 GPIO.output(led_pin_3, GPIO.HIGH)
                 GPIO.output(led_pin_4, GPIO.LOW)
                 GPIO.output(led_pin_6, GPIO.HIGH)
-
-                cv2.putText(frame2, 'WL2-YES', (10, 100),
-                            cv2.FONT_HERSHEY_DUPLEX, 1, (0, 255, 0), 2)
                 count_t_1_lane2 = 0
                 count_t_3_lane2 = 0
 
@@ -416,15 +415,10 @@ while cap.isOpened() or cap2.isOpened():
                 GPIO.output(led_pin_4, GPIO.LOW)
                 GPIO.output(led_pin_6, GPIO.LOW)
 
-                cv2.putText(frame2, 'W2L2-NO', (400, 100),
-                            cv2.FONT_HERSHEY_DUPLEX, 1, (0, 255, 0), 2)
             if count_t_3_lane2 == 10:
                 GPIO.output(led_pin_3, GPIO.HIGH)
                 GPIO.output(led_pin_4, GPIO.LOW)
                 GPIO.output(led_pin_6, GPIO.HIGH)
-
-                cv2.putText(frame2, 'W2L2-YES', (400, 100),
-                            cv2.FONT_HERSHEY_DUPLEX, 1, (0, 255, 0), 2)
                 count_t_3_lane2 = 0
                 count_t_1_lane2 = 0
         elif ((pause_3_lane2 == 1) & (pause_1_lane2 == 1) & (pause_2_lane2 == 0)):
@@ -433,64 +427,39 @@ while cap.isOpened() or cap2.isOpened():
                 GPIO.output(led_pin_4, GPIO.LOW)
                 GPIO.output(led_pin_6, GPIO.LOW)
 
-                cv2.putText(frame2, 'WL2-NO', (10, 100),
-                            cv2.FONT_HERSHEY_DUPLEX, 1, (0, 255, 0), 2)
-                cv2.putText(frame2, 'W2L2-NO', (600, 100),
-                            cv2.FONT_HERSHEY_DUPLEX, 1, (0, 255, 0), 2)
             if count_t_3_lane2 == 10 or count_t_1_lane2 == 10:
                 GPIO.output(led_pin_3, GPIO.HIGH)
                 GPIO.output(led_pin_4, GPIO.LOW)
                 GPIO.output(led_pin_6, GPIO.HIGH)
-                cv2.putText(frame2, 'WL2-YES', (10, 100),
-                            cv2.FONT_HERSHEY_DUPLEX, 1, (0, 255, 0), 2)
-                cv2.putText(frame2, 'W2L2-YES', (600, 100),
-                            cv2.FONT_HERSHEY_DUPLEX, 1, (0, 255, 0), 2)
+
                 count_t_3_lane2 = 0
                 count_t_1_lane2 = 0
 
         elif ((pause_2_lane2 == 1) & (pause_1_lane2 == 0) & (pause_3_lane2 == 0)):
             GPIO.output(led_pin_4, GPIO.HIGH)
-            cv2.putText(frame2, 'M-P-YES', (300, 100),
-                        cv2.FONT_HERSHEY_DUPLEX, 1, (0, 255, 0), 2)
             GPIO.output(led_pin_3, GPIO.HIGH)
             GPIO.output(led_pin_6, GPIO.LOW)
-
-            cv2.putText(frame2, 'ML-V-NO', (300, 60),
-                        cv2.FONT_HERSHEY_DUPLEX, 1, (0, 255, 0), 2)
             count_t_1_lane2 = 0
             count_t_3_lane2 = 0
 
         elif ((pause_2_lane2 == 1) & (pause_1_lane2 == 1) & (pause_3_lane2 == 0)):
             GPIO.output(led_pin_3, GPIO.HIGH)
-            cv2.putText(frame2, 'M-P-YES', (300, 100),
-                        cv2.FONT_HERSHEY_DUPLEX, 1, (0, 255, 0), 2)
             GPIO.output(led_pin_6, GPIO.LOW)
             GPIO.output(led_pin_4, GPIO.HIGH)
-
-            cv2.putText(frame2, 'M-V-NO', (300, 60),
-                        cv2.FONT_HERSHEY_DUPLEX, 1, (0, 255, 0), 2)
             count_t_1_lane2 = 0
             count_t_3_lane2 = 0
+
         elif ((pause_1_lane2 == 1) & (pause_2_lane2 == 1) & (pause_3_lane2 == 1)):
             GPIO.output(led_pin_3, GPIO.HIGH)
-            cv2.putText(frame2, 'M-P-YES', (300, 100),
-                        cv2.FONT_HERSHEY_DUPLEX, 1, (0, 255, 0), 2)
             GPIO.output(led_pin_4, GPIO.HIGH)
             GPIO.output(led_pin_6, GPIO.LOW)
-
-            cv2.putText(frame2, 'M-V-NO', (300, 60),
-                        cv2.FONT_HERSHEY_DUPLEX, 1, (0, 255, 0), 2)
             count_t_1_lane2 = 0
             count_t_3_lane2 = 0
+
         elif ((pause_1_lane2 == 0) & (pause_2_lane2 == 1) & (pause_3_lane2 == 1)):
             GPIO.output(led_pin_3, GPIO.HIGH)
-            cv2.putText(frame2, 'M-P-YES', (300, 100),
-                        cv2.FONT_HERSHEY_DUPLEX, 1, (0, 255, 0), 2)
             GPIO.output(led_pin_4, GPIO.HIGH)
             GPIO.output(led_pin_6, GPIO.LOW)
-
-            cv2.putText(frame2, 'M-V-NO', (300, 60),
-                        cv2.FONT_HERSHEY_DUPLEX, 1, (0, 255, 0), 2)
             count_t_1_lane2 = 0
             count_t_3_lane2 = 0
 
@@ -498,13 +467,11 @@ while cap.isOpened() or cap2.isOpened():
             GPIO.output(led_pin_3, GPIO.LOW)
             GPIO.output(led_pin_4, GPIO.LOW)
             GPIO.output(led_pin_6, GPIO.HIGH)
-
             count_t_1_lane2 = 0
             count_t_3_lane2 = 0
 
 
-####
-    # waiting output lane 1
+# waiting output lane 1
     if ret2:
         if ((pause_1 == 1) & (pause_2 == 0) & (pause_3 == 0)):
             # if (count_t_1 > 2):
@@ -512,6 +479,7 @@ while cap.isOpened() or cap2.isOpened():
                 GPIO.output(led_pin_1, GPIO.LOW)
                 GPIO.output(led_pin_5, GPIO.LOW)
                 GPIO.output(led_pin_2, GPIO.LOW)
+
             if count_t_1 == 10:
                 GPIO.output(led_pin_1, GPIO.HIGH)
                 GPIO.output(led_pin_5, GPIO.HIGH)
@@ -525,6 +493,7 @@ while cap.isOpened() or cap2.isOpened():
                 GPIO.output(led_pin_1, GPIO.LOW)
                 GPIO.output(led_pin_5, GPIO.LOW)
                 GPIO.output(led_pin_2, GPIO.LOW)
+
             if count_t_3 == 10:
                 GPIO.output(led_pin_1, GPIO.HIGH)
                 GPIO.output(led_pin_5, GPIO.HIGH)
@@ -557,6 +526,7 @@ while cap.isOpened() or cap2.isOpened():
                 GPIO.output(led_pin_2, GPIO.LOW)
                 count_t_1 = 0
                 count_t_3 = 0
+
         elif ((pause_3 == 1) & (pause_1 == 1) & (pause_2 == 1)):
             GPIO.output(led_pin_2, GPIO.HIGH)
             GPIO.output(led_pin_1, GPIO.HIGH)
@@ -570,8 +540,8 @@ while cap.isOpened() or cap2.isOpened():
             GPIO.output(led_pin_5, GPIO.LOW)
             count_t_1 = 0
             count_t_3 = 0
-        else:
 
+        else:
             GPIO.output(led_pin_1, GPIO.LOW)
             GPIO.output(led_pin_2, GPIO.LOW)
             GPIO.output(led_pin_5, GPIO.HIGH)
