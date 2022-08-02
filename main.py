@@ -75,9 +75,9 @@ pause_3 = 0
 counter_delay = 0
 cx = []
 cy = []
-led_pin_1 = 37  # pedestrian
-led_pin_2 = 13  # vehicle red
-led_pin_5 = 14  # vehicle green
+led_pin_1 = 37  # Pedestrian
+led_pin_2 = 13  # Vehicle red
+led_pin_5 = 14  # Vehicle green
 frame_delay_1 = 15
 frame_delay_2 = 15
 

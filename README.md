@@ -53,14 +53,12 @@ Follow [this_page](https://pypi.org/project/Jetson.GPIO/#:~:text=In%20order%20to
 
 ```
 sudo pip install Jetson.GPIO
-
 ```
 
 Openup python shell to check correct installation by running following command
 
 ```
 import Jetson.GPIO as GPIO
-
 ```
 
 ### numpy
@@ -69,7 +67,6 @@ Run following command
 
 ```
 pip install --user numpy
-
 ```
 
 ### jetson-utils
@@ -78,14 +75,12 @@ Run following command
 
 ```
 pip install --user jetson-utils
-
 ```
 
 Openup python shell to check correct installation by running following command
 
 ```
 import jetson-utils
-
 ```
 
 ### OpenCV
@@ -94,14 +89,12 @@ Run following command
 
 ```
 pip install --user opencv-python
-
 ```
 
 Openup python shell to check correct installation by running following command
 
 ```
 import cv2
-
 ```
 
 ## Setting up regions
@@ -152,13 +145,11 @@ You can autorun the script in jetson nano using following steps
 
 ```
 crontab -e
-
 ```
 3. At the end, put following command
 
 ```
 @reboot python3 path/to/script
-
 ```
 at the place of python3 put path to your python3 interpreter
 
