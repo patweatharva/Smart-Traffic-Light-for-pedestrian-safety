@@ -121,7 +121,7 @@ Click on the window to get the coordinates of the region and note them and move 
 
 In [main.py](https://github.com/patweatharva/Smart-Traffic-Light-for-pedestrian-safety/blob/main/main.py) in the specified pts variable put the respective coordinates
 
-![coordinates location in code](/images/region_coordinates_copy.png)
+![coordinates location in code](/images/region_coordinates_copy.png) 
 
 
 ## Running the script
