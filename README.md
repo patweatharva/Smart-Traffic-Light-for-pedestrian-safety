@@ -46,3 +46,78 @@ Before proceeding, it's worthwhile to test that [jetson-inference](https://githu
 
 * [Classifying Images with ImageNet](https://github.com/dusty-nv/jetson-inference/blob/master/docs/imagenet-console-2.md)
 
+
+### Jetson.GPIO
+
+Follow [this_page](https://pypi.org/project/Jetson.GPIO/#:~:text=In%20order%20to%20use%20the,to%20the%20newly%20created%20group.&text=Install%20custom%20udev%20rules%20by%20copying%20the%2099%2Dgpio.) for manual installation or run following command
+
+`
+sudo pip install Jetson.GPIO
+
+`
+
+Openup python shell to check correct installation by running following command
+
+`
+import Jetson.GPIO as GPIO
+
+`
+
+### numpy
+
+run 
+
+`
+pip install --user numpy
+
+`
+
+### jetson-utils
+
+run 
+
+`
+pip install --user jetson-utils
+
+`
+
+Openup python shell to check correct installation by running following command
+
+`
+import jetson-utils
+
+`
+
+### OpenCV
+
+run
+
+`
+pip install --user opencv-python
+
+`
+
+Openup python shell to check correct installation by running following command
+
+`
+import cv2
+
+`
+
+## Setting up regions
+
+After setting up cameras on desired locations from where clear view of lane is visible capture a frame and save to local directory for setting up the regions.
+
+### For saving a frame from live feed or video 
+
+run [capture_frame_from_video.py](https://github.com/patweatharva/Smart-Traffic-Light-for-pedestrian-safety/blob/main/capture_frame_from_video.py) after giving path to the video file or giving usb address of the camera connected.
+
+press 'x' to capture a frame
+
+The frame is then stored into current working directory.
+
+### For getting region coordinates
+
+
+
+
