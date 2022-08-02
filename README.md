@@ -2,7 +2,7 @@
 This repo contains the python code for Smart traffic light project.
 
 ## Description
-This project was initiated to make sure vehicles coming towards the zebra crossing get warning signal if a person is crossing the road from zebra crossing.This will enhance the safety of pedestrians especially in the night conditions or if the visibility is very low and vehicle driver is unable to see if the road is clear or not. This system can be integrated with existing traffic signal for added functionality.
+This project was initiated to make sure vehicles coming towards the zebra crossing get warning signal if a person is crossing the road.This system will enhance the safety of pedestrians especially during night conditions or when the visibility is very low and vehicle driver is not able to see if the road is clear or not. This system can be integrated with existing traffic signal system as a added functionality.
 
 
 ### Conditions and regions
@@ -13,7 +13,7 @@ Three regions are created on each lane of the road, Waiting_area_1, Main_Area, W
 If the person commits to the zebra cross and enter into the Main_Area, the pedestrain signal turns green allowing pedestrian to walk across the road but the vehicle signal turns red and warns the driver to slow down and stop the vechicle before zebracross and let that person cross the road. After the person safely crosses the road, vehicle signal turns green allowing vehicel to go and pedestrian signal stops being green.
 
 following picture shows the schematic of the system.
-![schematic](setup.jpg)
+![schematic](setup_copy.jpg)
 
 ### How it's done
 The video obtained from the camera is used for person detection on the zebra crossing using [jetson-inference](https://github.com/dusty-nv/jetson-inference) and above mentioned conditions are checked.
@@ -115,13 +115,13 @@ Run following python script to get the co-ordinates of the regions
 
 [region_coordinates.py](https://github.com/patweatharva/Smart-Traffic-Light-for-pedestrian-safety/blob/main/region_coordinates.py)
 
-Click on the window to get the coordinates of the region not down them and move onto the next step
+Click on the window to get the coordinates of the region and note them and move onto the next step
 
 ### Putting coordinates in code
 
-In [main.py](https://github.com/patweatharva/Smart-Traffic-Light-for-pedestrian-safety/blob/main/main.py) in the specified pts put the respective coordinates
+In [main.py](https://github.com/patweatharva/Smart-Traffic-Light-for-pedestrian-safety/blob/main/main.py) in the specified pts variable put the respective coordinates
 
-![schematic](region_coordinates.jpg)
+![schematic](https://github.com/patweatharva/Smart-Traffic-Light-for-pedestrian-safety/blob/main/region_coordinates_copy.jpg)
 
 
 ## Running the script
@@ -134,7 +134,7 @@ Connect following hardware to the jetson nano
 4. 5V 3A power supply to jetson nano
 
 
-There you have it 
+There, you have it!!! 
 
 You have successfully implemented the program 
 
