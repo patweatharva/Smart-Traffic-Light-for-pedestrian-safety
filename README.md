@@ -13,7 +13,7 @@ Three regions are created on each lane of the road, Waiting_area_1, Main_Area, W
 If the person commits to the zebra cross and enter into the Main_Area, the pedestrain signal turns green allowing pedestrian to walk across the road but the vehicle signal turns red and warns the driver to slow down and stop the vechicle before zebracross and let that person cross the road. After the person safely crosses the road, vehicle signal turns green allowing vehicel to go and pedestrian signal stops being green.
 
 following picture shows the schematic of the system.
-![schematic](\images\setup_schematic.png)
+![schematic](images/setup_schematic.png)
 
 ### How it's done
 The video obtained from the camera is used for person detection on the zebra crossing using [jetson-inference](https://github.com/dusty-nv/jetson-inference) and above mentioned conditions are checked.
@@ -121,7 +121,7 @@ Click on the window to get the coordinates of the region and note them and move 
 
 In [main.py](https://github.com/patweatharva/Smart-Traffic-Light-for-pedestrian-safety/blob/main/main.py) in the specified pts variable put the respective coordinates
 
-![coordinates location in code](\images\region_coordinates_copy.png) 
+![coordinates location in code](images/region_coordinates_copy.png) 
 
 
 ## Running the script
