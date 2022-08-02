@@ -152,6 +152,3 @@ crontab -e
 @reboot python3 path/to/script
 ```
 at the place of python3 put path to your python3 interpreter
-
-
-![Video demo](/images/video_2022-08-02_23-40-39.mp4)
