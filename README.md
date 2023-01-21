@@ -160,23 +160,23 @@ at the place of python3 put path to your python3 interpreter
 
 ## Refrences 
 
-*[jetson-inference](https://github.com/dusty-nv/jetson-inference)
-*[jetson.GPIO](https://pypi.org/project/Jetson.GPIO/)
-*[openCV](https://opencv.org/)
+1. [jetson-inference](https://github.com/dusty-nv/jetson-inference)
+2. [jetson.GPIO](https://pypi.org/project/Jetson.GPIO/)
+3. [openCV](https://opencv.org/)
 
 
-##Conclusion
+## Conclusion
 This Smart Traffic Light project can help to improve pedestrian safety by providing warning signals to vehicle drivers when pedestrians are present at a zebra crossing. The system can be integrated with existing traffic signal systems and can be easily installed on Jetson devices. This project is an example of how computer vision and machine learning can be used in real-world applications to improve safety and quality of life.
 
-##Note
+## Note
 Please note that the above code is tested on Jetson Xavier, It may not work on other platforms.
 
-##Contribution
+## Contribution
 If you want to contribute to this project, you are most welcome. Just fork the repo and make a pull request.
 
-##License
+## License
 This project is licensed under the [MIT License](https://github.com/patweatharva/Smart-Traffic-Light-for-pedestrian-safety/blob/main/LICENSE) - see the LICENSE file for details.
 
-##Contact
+## Contact
 If you have any questions or feedback, please feel free to contact me at [patweatharva@gmail.com](patweatharva@gmail.com)
 
