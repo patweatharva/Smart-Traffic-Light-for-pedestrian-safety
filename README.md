@@ -1,32 +1,36 @@
 # Smart-Traffic-Light-for-pedestrian-safety
-This repo contains the python code for Smart traffic light project.
+This repository contains the Python code for a smart traffic light project designed to enhance pedestrian safety. The system uses a camera to detect pedestrians at a zebra crossing and manipulates the traffic signals accordingly. The project can be integrated with existing traffic signal systems as an added functionality.
+
 
 ## Description
-This project was initiated to make sure vehicles coming towards the zebra crossing get warning signal if a person is crossing the road.This system will enhance the safety of pedestrians especially during night conditions or when the visibility is very low and vehicle driver is not able to see if the road is clear or not. This system can be integrated with existing traffic signal system as a added functionality.
-
+The project aims to provide warning signals to vehicles approaching a zebra crossing if a pedestrian is crossing the road. This system is especially useful during night conditions or when visibility is low, as it ensures that vehicle drivers are aware of pedestrians on the road.
 
 ### Conditions and regions
 This system manipulates three signal, Vehicle red, Vehicle Green and Pedestrain Green for each lane.
 
-Three regions are created on each lane of the road, Waiting_area_1, Main_Area, Waiting_Area_2.If a person is present in Waiting_Area_1 or Waiting_Area_2 the Pedestrain green and vehicle green signal blinks with some frequency indicating the state change and warning to the pedestrain and to the vehicle driver that person is about to enter into the the zebra crossing so, GO SLOW!!
+Three regions are created on each lane of the road: Waiting_area_1, Main_Area, Waiting_Area_2. If a pedestrian is present in the Waiting_Area_1 or Waiting_Area_2, the pedestrian green signal and vehicle green signal blink with a certain frequency, indicating a state change and warning to both the pedestrian and the vehicle driver. 
 
-If the person commits to the zebra cross and enter into the Main_Area, the pedestrain signal turns green allowing pedestrian to walk across the road but the vehicle signal turns red and warns the driver to slow down and stop the vechicle before zebracross and let that person cross the road. After the person safely crosses the road, vehicle signal turns green allowing vehicel to go and pedestrian signal stops being green.
+If the pedestrian commits to crossing the road and enters the Main_Area, the pedestrian signal turns green, allowing them to cross the road, while the vehicle signal turns red, warning the driver to slow down and stop before the zebra crossing to let the pedestrian cross safely. After the pedestrian safely crosses the road, the vehicle signal turns green, allowing the vehicle to proceed, and the pedestrian signal stops being green.
+
 
 following picture shows the schematic of the system.
 ![schematic](images/setup_schematic.png)
 
-### How it's done
+### Technical Implementation
 The video obtained from the camera is used for person detection on the zebra crossing using [jetson-inference](https://github.com/dusty-nv/jetson-inference) and above mentioned conditions are checked.
 
 
 ## Installations
-First, install the latest version of [JetPack](https://developer.nvidia.com/embedded/jetpack) on your Jetson.
+To install the system, you will need to install the latest version of [JetPack](https://developer.nvidia.com/embedded/jetpack) on your Jetson device. 
+
 
 Then, follow the steps below to install the needed components on your Jetson.
 
 ### jetson-inference
 
-This system uses the DNN objects from the [jetson-inference](https://github.com/dusty-nv/jetson-inference) project (aka Hello AI World). To build and install jetson-inference, see [this_page](https://github.com/dusty-nv/jetson-inference/blob/master/docs/building-repo-2.md) or run the commands below:
+This system uses the DNN objects from the [jetson-inference](https://github.com/dusty-nv/jetson-inference) project (also known as Hello AI World). 
+
+To build and install jetson-inference, see [this page](https://github.com/dusty-nv/jetson-inference/blob/master/docs/building-repo-2.md) or run the commands below:
 
 ```
 
@@ -152,3 +156,27 @@ crontab -e
 @reboot python3 path/to/script
 ```
 at the place of python3 put path to your python3 interpreter
+
+
+## Refrences 
+
+*[jetson-inference](https://github.com/dusty-nv/jetson-inference)
+*[jetson.GPIO](https://pypi.org/project/Jetson.GPIO/)
+*[openCV](https://opencv.org/)
+
+
+##Conclusion
+This Smart Traffic Light project can help to improve pedestrian safety by providing warning signals to vehicle drivers when pedestrians are present at a zebra crossing. The system can be integrated with existing traffic signal systems and can be easily installed on Jetson devices. This project is an example of how computer vision and machine learning can be used in real-world applications to improve safety and quality of life.
+
+##Note
+Please note that the above code is tested on Jetson Xavier, It may not work on other platforms.
+
+##Contribution
+If you want to contribute to this project, you are most welcome. Just fork the repo and make a pull request.
+
+##License
+This project is licensed under the [MIT License](https://github.com/patweatharva/Smart-Traffic-Light-for-pedestrian-safety/blob/main/LICENSE) - see the LICENSE file for details.
+
+##Contact
+If you have any questions or feedback, please feel free to contact me at [patweatharva@gmail.com](patweatharva@gmail.com)
+
